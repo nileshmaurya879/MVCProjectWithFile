@@ -1,0 +1,53 @@
+﻿@model List<MVCDefaultProject.Models.Employee>;
+<h2>Hello world</h2>
+<style>
+    table,th,td{
+        border:1px solid black;
+    }
+
+</style>
+
+<table style="width:100%">
+    <tr>
+        <th>EmployeeName</th>
+        <th>Age</th>
+        <th>EmployeeGender</th>
+        <th>Marriage</th>
+        <th>Notes</th>
+        <th>DateOfBirth</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.EmployeeName</td>
+            <td>@item.Age</td>
+            <td>@item.Gender</td>
+            <td>@item.Marriage</td>
+            <td>@item.Notes</td>
+            <td>@item.DateOfBirth</td>
+            <td class="image-cell">
+                @{
+                    @if (item.profileImage != null && item.profileImage.Length > 0)
+                    {
+                        var image = Convert.ToBase64String(item.profileImage);
+                        string imageUrl = $"data:image;base64,{image}";
+                        <img src="@imageUrl" style="width:100px;height:auto" />
+                    }
+                    else
+                    {
+                        <span>No image</span>
+                    }
+                }
+                
+            </td>
+            <td>
+                <a type="submit" asp-controller="Employee" asp-action="UpdateEmployee" asp-route-id=@item.EmployeeId>Update</a>
+                <a type="submit" asp-controller="Employee" asp-action="DeleteEmployee" asp-route-id=@item.EmployeeId>Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+<form>
+    <button type="submit" asp-controller="Employee" asp-action="AddEmployee" value="Add">Add</button>
+</form>

@@ -1,0 +1,50 @@
+﻿@model MVCDefaultProject.Dto.EmployeeDto;
+
+<h1>Add employee</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <form class="form-control" enctype="multipart/form-data" method="post" asp-controller="Employee" asp-action="AddEmployee">
+                <input class="form-control" type="text" asp-for="EmployeeName" placeholder="Enter the Employee Name:" />
+                <br />
+                <span asp-validation-for="EmployeeName"></span>
+                <input class="form-control" placeholder="Enter age" type="number" asp-for="Age"/>
+                <br />
+                <input type="datetime-local" asp-for="DateOfBirth" class="form-control" />
+                <br />
+                <select class="form-control" asp-for="Gender" asp-items="ViewBag.Gender">
+                    <option value="">Select Gender</option>
+                </select>
+                <br />
+                <div class="form-check">
+                    <input type="radio" value="Yes" class="form-check-input" asp-for="Marriage"/>
+                    <label>Yes</label>
+                </div>
+                <br />
+                <div class="form-check">
+                    <input type="radio" value="No" class="form-check-input" asp-for="Marriage" />
+                    <label>No</label>
+                </div>
+                <br />
+                <textarea class="form-control" asp-for="Notes" placeholder="Enter the Notes">
+
+                </textarea>
+                <br />
+                <input type="file" id="profileImage" name="profileImage" class="form-control" />
+                <br />
+
+                @foreach (var item in Model.viewModelDto.checkboxes)
+                {
+                    <input type="checkbox" value="@item.value" name="Sports" class="form-check-input" />
+                    <label class="form-check-label">
+                        check 
+                    </label>
+                }
+
+                <br />
+                <input type="Submit"  class="btn btn-info" value="Add" />
+            </form>
+        </div>
+    </div>
+</div>

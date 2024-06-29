@@ -1,0 +1,32 @@
+﻿@model MVCDefaultProject.Models.Employee
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+           <form class="form-control" method="post">
+                <div class="form-control">
+                    <input type="number" asp-for="EmployeeId" hidden/>
+                    <input type="text" class="form-control" asp-for="EmployeeName" /><br />
+                    <input type="number" class="form-control" asp-for="Age" /><br />
+                    <select class="form-control" asp-for="Gender" asp-items="ViewBag.Gender">
+                        <option value="">Select Option</option>
+                    </select>
+                    <br />
+                    <div class="form-control">
+                        <input type="radio" asp-for="Marriage" value="Yes" />
+                    </div>
+                    <br />
+                    <div class="form-control">
+                        <input type="radio" asp-for="Marriage" value="No" />
+                    </div>
+                    <br />
+                    <textarea class="form-control" asp-for="Notes">
+
+                     </textarea>
+                     <br />
+                    <input type="Submit" value="Update" asp-controller="Employee" asp-action="UpdateEmployee" />
+                </div>
+           </form>
+        </div>
+    </div>
+</div>
